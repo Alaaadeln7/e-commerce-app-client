@@ -3,10 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const authApiSlice = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl:
-      // import.meta.env.NODE === "development"
-      "http://localhost:9090/api/auth",
-    // : "/api/auth",,
+    baseUrl: "https://gymboyui.onrender.com/api/auth",
     credentials: "include",
   }),
   tagTypes: ["User"],
@@ -27,14 +24,6 @@ export const authApiSlice = createApi({
       query: (values) => ({
         url: "/login",
         method: "POST",
-        body: values,
-      }),
-      invalidatesTags: ["User"],
-    }),
-    createWorkExperience: builder.mutation({
-      query: (values) => ({
-        url: "/createWorkExperience",
-        method: "PUT",
         body: values,
       }),
       invalidatesTags: ["User"],
@@ -62,10 +51,6 @@ export const authApiSlice = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    getAllUsers: builder.query({
-      query: () => "/getAllUsers",
-      invalidatesTags: ["User"],
-    }),
   }),
 });
 
@@ -76,6 +61,4 @@ export const {
   useLogoutMutation,
   useUpdateProfileMutation,
   useUpdateInfoMutation,
-  useCreateWorkExperienceMutation,
-  useGetAllUsersQuery,
 } = authApiSlice;
