@@ -8,6 +8,8 @@ import { Toaster } from "react-hot-toast";
 import NotFoundPage from "./components/NotFoundPage";
 import { useSelector } from "react-redux";
 import { Loader } from "lucide-react";
+import Navbar from "./views/Navbar";
+import Footer from "./components/foooter/Footer";
 
 export default function App() {
   const { theme } = useSelector((state) => state.theme);
@@ -38,6 +40,7 @@ export default function App() {
 
   return (
     <main data-theme={theme} className="overflow-hidden">
+      <Navbar />
       <Routes>
         <Route
           path="/"
@@ -52,6 +55,7 @@ export default function App() {
           element={!currentUser ? <LoginPage /> : <Navigate to="/" />}
         />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
       <Toaster />
     </main>

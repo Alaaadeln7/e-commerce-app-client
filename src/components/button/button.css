@@ -1,0 +1,12 @@
+.btn-one{
+    background-color: var(--primary-color);;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.3rem;
+    border: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-one:hover{
+    background-color: #008000f5;
+}

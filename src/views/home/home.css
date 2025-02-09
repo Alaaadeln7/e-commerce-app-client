@@ -1,0 +1,203 @@
+.promotion {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.promotion .container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.promotion h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+@media screen and (max-width: 374px) {
+    .promotion h1{
+        font-size: 2rem;
+    }
+}
+
+.promotion .content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.promotion .content .room {
+    flex: 1 1 300px;
+    max-width: 500px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    color: black;
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.promotion .content .roomOne {
+    background: url('../../assets/images/imoOne.jpeg') no-repeat center center/cover;
+}
+
+.promotion .content .roomTow {
+    background: url('../../assets/images/imoTow.jpeg') no-repeat center center/cover;
+}
+
+.promotion .content .room h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.promotion .content .room p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.promotion .content .room button {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.promotion .content .room button:hover {
+    background-color: #008000f5;
+}
+
+.promotion .content .room:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .promotion .content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+/* =================================== */
+
+.story {
+    margin-top: 7rem;
+}
+
+.story h1{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 374px) {
+    .story h1{
+        font-size: 2rem;
+    }
+}
+
+.story .image {
+    max-width: 100%;
+    position: relative;
+}
+
+.story .image img{
+    width: 100%;
+}
+
+.story .image a{
+    position: absolute;
+    top: 76%;
+    right: 12rem;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    align-items: center;
+    padding: 1rem 2.5rem;
+}
+
+
+/* ==================================== */
+
+
+.new{
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+}
+
+.new .content{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.new .content .room{
+    width: 23rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(223, 223, 223);
+}
+
+.new .content .roomOne{
+    border: none !important;
+}
+
+.new .content .room img{
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0 ;
+    /* margin-bottom: 1rem; */
+}
+
+.new .content .room h1{
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.new .content .roomOne p{
+    line-height: 27px;
+    margin-bottom: 7rem;
+}
+
+.new .content .room .button{
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+    border-radius: 0.5rem;
+    transition: 0.4s;
+    padding: 0.7rem 1.4rem;
+}
+
+.new .content .room .button:hover{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.new .content .room h4{
+    font-size: 1.2rem;
+    color: black;
+    max-width: 18rem;
+    padding: 1rem;
+}
+
+.new .content .room h6{
+    padding: 0 1rem 1rem 1rem;
+    color: gray;
+}
