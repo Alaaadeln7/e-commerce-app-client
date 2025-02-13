@@ -1,5 +1,4 @@
 import Navbar from "../Navbar";
-import React from "react";
 import Rombica from "../../assets/images/Image 1.jpg"; 
 import Button from "../../components/button/Button";
 import LimitProduct from "../../components/limitProduct/LimitProduct";
@@ -8,7 +7,7 @@ import image7 from '../../assets/images/Image 7.jpg'
 import { CiPlay1 } from "react-icons/ci";
 import newOne from '../../assets/images/newOne.jpeg'
 import newTow from '../../assets/images/newTow.jpeg'
-import Footer from "../../components/foooter/Footer";
+import Footer from "../../components/footer/Footer";
 import LazyImage from "../../components/LazyImage";
 
 
@@ -82,7 +81,7 @@ const New = () =>{
       <div className="container">
         <div className="content">
           <div className="room roomOne">
-            <h1>read what's new</h1>
+            <h1>read what is new</h1>
             <p>
               Sint consequat in ipsum irure adipisicing dolore culpa incididunt.
               Veniam elit magna anim ipsum eiusmod eu

@@ -28,9 +28,10 @@ export default function SignupPage() {
     validationSchema: validationSignupPage,
     onSubmit: async (values) => {
       try {
-        const result = await signup(values).unwrap();
+        await signup(values).unwrap();
         if (isSuccess) {
           toast.success("Signup is successful!");
+          navigate("/");
         }
       } catch (err) {
         toast.error(err?.data?.message || "Signup failed. Try again!");
