@@ -9,11 +9,13 @@ import NotFoundPage from "./components/NotFoundPage";
 import { useSelector } from "react-redux";
 import { Loader } from "lucide-react";
 import Navbar from "./views/Navbar";
-import Footer from "./components/foooter/Footer";
+import Footer from "./views/foooter/Footer";
+import Shop from "./views/shop/Shop";
+import Blog from "./views/blog/Blog";
 
 export default function App() {
   const { theme } = useSelector((state) => state.theme);
-  const { data: user, isLoading  } = useCheckQuery();
+  const { data: user, isLoading } = useCheckQuery();
   const navigate = useNavigate();
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -56,6 +58,8 @@ export default function App() {
         />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
       <Toaster />
     </main>

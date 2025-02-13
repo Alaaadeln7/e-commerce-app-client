@@ -1,24 +1,23 @@
 import Navbar from "../Navbar";
 import React from "react";
-import Rombica from "../../assets/images/Image 1.jpg"; 
+import Rombica from "../../assets/images/Image 1.jpg";
 import Button from "../../components/button/Button";
-import LimitProduct from "../../components/limitProduct/LimitProduct";
-import '../home/home.css'
-import image7 from '../../assets/images/Image 7.jpg'
+import LimitProduct from "../limitProduct/LimitProduct";
+import "../home/home.css";
+import image7 from "../../assets/images/Image 7.jpg";
 import { CiPlay1 } from "react-icons/ci";
-import newOne from '../../assets/images/newOne.jpeg'
-import newTow from '../../assets/images/newTow.jpeg'
-import Footer from "../../components/foooter/Footer";
+import newOne from "../../assets/images/newOne.jpeg";
+import newTow from "../../assets/images/newTow.jpeg";
+import Footer from "../foooter/Footer";
 import LazyImage from "../../components/LazyImage";
-
-
+import free from '../../assets/images/Free.jpeg'
 
 const HeaderSection = () => {
   return (
     <header
       className="relative w-full h-[90vh] bg-cover bg-center flex items-center"
       style={{
-        backgroundImage: `url(${Rombica})`,
+        backgroundImage: `url(${free})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100%",
@@ -40,19 +39,23 @@ const HeaderSection = () => {
   );
 };
 
-const Promotion = () =>{
+const Promotion = () => {
   return (
     <div className="promotion">
       <div className="container">
         <h1>Event Promtion</h1>
         <div className="content">
           <div className="room roomOne">
-            <h3>Relaxing & <br /> Pampering</h3>
+            <h3>
+              Relaxing & <br /> Pampering
+            </h3>
             <p>Pariatur ad nisi ex tempor ea</p>
             <button>Explore</button>
           </div>
           <div className="room roomTow">
-            <h3>Relaxing & <br /> Pampering</h3>
+            <h3>
+              Relaxing & <br /> Pampering
+            </h3>
             <p>Pariatur ad nisi ex tempor ea</p>
             <button>Explore</button>
           </div>
@@ -60,9 +63,9 @@ const Promotion = () =>{
       </div>
     </div>
   );
-}
+};
 
-const Story = () =>{
+const Story = () => {
   return (
     <div className="story">
       <h1>our story</h1>
@@ -74,9 +77,9 @@ const Story = () =>{
       </div>
     </div>
   );
-}
+};
 
-const New = () =>{
+const New = () => {
   return (
     <div className="new">
       <div className="container">
@@ -103,8 +106,7 @@ const New = () =>{
       </div>
     </div>
   );
-}
-
+};
 
 export default function HomePage() {
   return (
