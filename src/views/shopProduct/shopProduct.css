@@ -1,0 +1,91 @@
+
+
+.shop-product{
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.shop-product .head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-product .head .left{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+}
+
+.shop-product .head .left button{
+    padding: 1rem 3rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 0.4rem;
+    transition: 0.3s;
+}
+
+.shop-product .head .left button:hover{
+    background-color: #008000f5;
+}
+
+.shop-product .head .left h2{
+    color: var(--primary-color);
+    font-size: 1.6rem;
+}
+
+.shop-product .head .left span{
+    width: 1px;
+    height: 2rem;
+    background-color: var(--primary-color);
+}
+
+.shop-product .head .right{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.shop-product .head .right label{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    border-bottom: 1px solid #d8d8d8;
+    padding: 1rem 1rem;
+}
+
+.shop-product .head .right label input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.shop-product .head .right label .search{
+    color: gray;
+}
+
+.shop-product .head .right label input::placeholder{
+    color: #bebebe;
+}
+
+.shop-product .head .right .sort{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #e6e6e6;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.shop-product .head .right .sort h3{
+    font-size: 1.3rem;
+    color: gray;
+}
+
+.shop-product .head .right .sort .filter{
+    color: gray;
+}

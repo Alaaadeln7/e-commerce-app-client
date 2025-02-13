@@ -7,15 +7,12 @@ import { Toaster } from "react-hot-toast";
 import NotFoundPage from "./components/NotFoundPage";
 import { useSelector } from "react-redux";
 import Navbar from "./views/Navbar";
-import Settings from "./views/settings/Settings";
-import Cart from "./views/cart/Cart";
 
 export default function App() {
   const { theme } = useSelector((state) => state.theme);
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
-
   return (
     <main data-theme={theme} className="overflow-hidden">
       <Navbar />
@@ -33,9 +30,7 @@ export default function App() {
           element={ <LoginPage />}
         />
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
       <Toaster />
     </main>

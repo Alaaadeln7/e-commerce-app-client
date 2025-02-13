@@ -1,0 +1,38 @@
+
+
+.shop-head {
+    margin-bottom: 5rem;
+    background-image: url(../../assets/images/Objetos.jpeg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    align-items: center; 
+    color: white;
+}
+
+
+
+.shop-head .content {
+    /* padding: 1.5rem; */
+    border-radius: 10px;
+}
+
+.shop-head h1 {
+    font-size: 5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .shop-head h1{
+        font-size: 3rem;
+    }
+}
+
+.shop-head p {
+    font-size: 1.5rem;
+    max-width: 34rem;
+}
