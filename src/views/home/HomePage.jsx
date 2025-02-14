@@ -7,6 +7,8 @@ import { CiPlay1 } from "react-icons/ci";
 import newOne from '../../assets/images/newOne.jpeg'
 import newTow from '../../assets/images/newTow.jpeg'
 import Footer from "../../components/footer/Footer";
+import LazyImage from "../../components/LazyImage";
+import free from '../../assets/images/free.jpeg'
 const HeaderSection = () => {
   return (
     <header

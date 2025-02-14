@@ -1,16 +1,34 @@
-import { ShoppingCart, TicketPercent, Trash2 } from "lucide-react";
+import { ShoppingCart, TicketPercent } from "lucide-react";
 import useCoupon from "../../hooks/useCoupon";
+import useCart from "../../hooks/useCart";
 
 export default function Cart() {
   const { formik, checkCouponLoading } = useCoupon();
-  const cartItems = [
-    { id: 1, title: "Cy Ganderton", price: 20, quantity: 2, image: "image" },
-  ];
+  const { cartItems  } = useCart();
 
-  const subTotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const discount = 20;
   const delivery = 20;
-  const total = subTotal - discount + delivery;
+  // const total = subTotal - discount + delivery;
+
+  if (!cartItems.length) {
+    return (
+      <div className="mt-20 text-center container px-4">
+        {cartItems.length !== 0 && (
+          <h1 className="text-3xl font-semibold">
+            My Shopping Bag ({!cartItems.length} Items)
+          </h1>
+        )}
+        <div className="flex items-center justify-center mt-4">
+         <div className="flex items-center flex-col" >
+         <ShoppingCart className="w-8 h-8 text-primary animate-pulse" />
+          <h1 className="text-3xl font-semibold ml-2">
+            Your Shopping Bag is Empty
+          </h1>
+         </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-20 text-center container px-4">
@@ -36,27 +54,18 @@ export default function Cart() {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.image}</td>
-                    <td>{item.title}</td>
-                    <td>${item.price}</td>
-                    <td>{item.quantity}</td>
-                    <td>${item.price * item.quantity}</td>
-                    <td>
-                      <Trash2 className="cursor-pointer w-5 h-5 text-red-600" />
-                    </td>
-                  </tr>
-                ))}
+                {/* {printCartItems} */}
               </tbody>
             </table>
           </div>
         </div>
+
         <div className="lg:w-1/3 w-full p-4 border border-primary rounded-xl">
           <h1 className="text-2xl text-start py-4">Payment Method</h1>
           <div className="flex gap-4">
             <button className="btn btn-primary w-full">Cash on Delivery</button>
           </div>
+
           <div className="flex flex-col gap-2 items-start mt-4 w-full">
             <h2>Discount Code</h2>
             <form className="flex space-x-2 items-center w-full" onSubmit={formik.handleSubmit}>
@@ -75,6 +84,7 @@ export default function Cart() {
               </button>
             </form>
           </div>
+
           <div className="flex flex-col gap-2 p-4">
             <h1 className="self-start">
               <TicketPercent className="w-5 h-5 text-primary inline-block mr-2" />
@@ -82,7 +92,7 @@ export default function Cart() {
             </h1>
             <div>
               <div className="flex justify-between items-center py-2">
-                <p>Sub Total</p> <span>${subTotal}</span>
+                <p>Sub Total</p> <span>${40}</span>
               </div>
               <div className="flex justify-between items-center py-2">
                 <p>Discount</p> <span> - ${discount}</span>
@@ -93,7 +103,7 @@ export default function Cart() {
               <hr />
               <div className="flex justify-between items-center py-2">
                 <p className="text-lg font-semibold">Total</p>
-                <span className="text-2xl font-semibold text-primary">${total}</span>
+                <span className="text-2xl font-semibold text-primary">${120}</span>
               </div>
               <button className="w-full mt-4 btn btn-primary">Checkout</button>
             </div>

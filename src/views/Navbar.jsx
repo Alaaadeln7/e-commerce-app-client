@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCheckQuery, useLogoutMutation } from "../store/api/authApiSlice";
-import { Bell, Loader2, LogOut, Settings, ShoppingCart } from "lucide-react";
+import { Bell, Loader2, LogOut, Settings, ShoppingCart, User } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function Navbar() {
@@ -22,6 +22,7 @@ export default function Navbar() {
       console.error(error);
     }
   };
+
   return (
     <header className="shadow-sm fixed w-full top-0 z-50 backdrop-blur-lg bg-base-100 px-4">
       <div className="max-w-[1920px] mx-auto flex items-center justify-around px-4 py-2">
@@ -51,8 +52,8 @@ export default function Navbar() {
           </ul>
         </nav>
 
-
         <div className="flex items-center space-x-2">
+          <Link to={"/signup"} className="btn btn-ghost flex items-center"><User className="w-6 h-6"/> sign up</Link>
           <form className="hidden md:block" action="">
             <div className="form-control">
               <input type="search" placeholder="Search" className="input input-bordered" />
