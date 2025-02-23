@@ -1,125 +1,131 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useCheckQuery, useLogoutMutation } from "../store/api/authApiSlice";
-import { Bell, Loader2, LogOut, Settings, ShoppingCart, User } from "lucide-react";
-import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { ShoppingCart, User, Menu } from "lucide-react";
+import useCart from "../hooks/useCart";
+import NotificationsButton from "./NotificationsButton";
+import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 export default function Navbar() {
-  const { data: user, isLoading: isUserLoading } = useCheckQuery();
-  const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      const { data } = await logout();
-      if (data.status == "SUCCESS") {
-        toast.success("Logged out successfully");
-        navigate("/login");
-      } else {
-        toast.error("Logout failed");
-      }
-    } catch (error) {
-      toast.error("An error occurred during logout");
-      console.error(error);
-    }
-  };
+  const { user } = useAuth();
+  const { cartItems } = useCart();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="shadow-sm fixed w-full top-0 z-50 backdrop-blur-lg bg-base-100 px-4">
-      <div className="max-w-[1920px] mx-auto flex items-center justify-around px-4 py-2">
-        
-        <div className="flex items-center space-x-2">
-          <h1 className="text-2xl uppercase">
-            <Link to={"/"}>logo</Link>
-          </h1>
-        </div>
+    <header className="fixed w-full top-0 z-50 bg-base-100 shadow-sm px-6">
+      <div className="max-w-[1920px] mx-auto flex items-center justify-between py-3">
+        {/* Logo */}
+        <h1 className="text-2xl uppercase">
+          <Link to={"/"}>logo</Link>
+        </h1>
 
-        <nav>
-          <ul className="flex items-center space-x-4">
-            <li>
-              <Link to={"/shop"}>Shop</Link>
-            </li>
-            <li>
-              <Link to={"/offers"}>Offers</Link>
-            </li>
-            <li>
-              <Link to={"/our-story"}>Our Story</Link>
-            </li>
-            <li>
-            </li>
-            <li>
-              <Link to={"/blogs"}>Blogs</Link>
-            </li>
-          </ul>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-6">
+          <Link to={"/shop"} className="hover:text-primary">
+            Shop
+          </Link>
+          <Link to={"/offers"} className="hover:text-primary">
+            Offers
+          </Link>
+          <Link to={"/our-story"} className="hover:text-primary">
+            Our Story
+          </Link>
+          <Link to={"/blogs"} className="hover:text-primary">
+            Blogs
+          </Link>
         </nav>
 
-        <div className="flex items-center space-x-2">
-          <Link to={"/signup"} className="btn btn-ghost flex items-center"><User className="w-6 h-6"/> sign up</Link>
-          <form className="hidden md:block" action="">
-            <div className="form-control">
-              <input type="search" placeholder="Search" className="input input-bordered" />
-            </div>
+        {/* Right Section */}
+        <div className="flex items-center space-x-4">
+          {!user && (
+            <Link to={"/signup"} className="btn btn-ghost flex items-center">
+              <User className="w-6 h-6" /> Sign Up
+            </Link>
+          )}
+
+          {/* Search Bar (Hidden on Small Screens) */}
+          <form className="hidden md:block">
+            <input
+              type="search"
+              placeholder="Search"
+              className="input input-bordered"
+            />
           </form>
-          <div>
-            <Link to={"/cart"} className="flex gap-2">
-              <ShoppingCart  className="inline"/>
-              <span>Cart(0)</span>
-            </Link> 
-          </div>
-          {user && <details className="dropdown">
-            <summary className="btn bg-transparent outline-none border-none hover:bg-transform m-1">
-              <img
-                className="w-10 h-10 rounded-full object-cover"
-                src={user?.avatar}
-                alt={user?.fullName}
-              />
-            </summary>
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-              <li>
-                <Link
-                  to={"/profile"}
-                  className="flex justify-between items-center"
-                >
+
+          {/* Cart */}
+          <Link to={"/cart"} className="flex items-center gap-2">
+            <ShoppingCart className="w-6 h-6" />
+            <span>Cart({cartItems?.length})</span>
+          </Link>
+
+
+          {user && (
+            <>
+              <Link
+                to={"/profile"}
+              >
+                <img
+                  className="w-10 h-10 rounded-full object-cover"
+                  src={user?.avatar}
+                  alt={user?.fullName}
+                />
+              </Link>
+ 
+              <NotificationsButton />
+            </>
+          )}
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden btn btn-ghost"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu (Drawer) */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex">
+          <div className="w-64 bg-white p-4 flex flex-col space-y-4 shadow-lg">
+            <button
+              className="self-end text-gray-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ✖
+            </button>
+            <Link to={"/shop"} className="hover:text-primary">
+              Shop
+            </Link>
+            <Link to={"/offers"} className="hover:text-primary">
+              Offers
+            </Link>
+            <Link to={"/our-story"} className="hover:text-primary">
+              Our Story
+            </Link>
+            <Link to={"/blogs"} className="hover:text-primary">
+              Blogs
+            </Link>
+            {user ? (
+              <>
+                <Link to="/profile" className="flex items-center gap-2">
                   <img
-                    className="w-10 h-10 rounded-full object-cover"
+                    className=""
                     src={user?.avatar}
                     alt={user?.fullName}
                   />
-                  <p>{user?.fullName}</p>
+                  <span>{user?.fullName}</span>
                 </Link>
-              </li>
-              <li>
-                <Link
-                  to="/settings"
-                  className="flex justify-between items-center gap-2 transition-colors"
-                >
-                  <Settings className="w-4 h-4" />
-                  <span>Settings</span>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={handleLogout}
-                  disabled={isLoggingOut}
-                  className="flex justify-between items-center gap-2 transition-colors"
-                >
-                  {isLoggingOut ? (
-                    <span className="loading loading-dots loading-md"></span>
-                  ) : (
-                    <>
-                      <LogOut className="w-4 h-4" />
-                      <span>Logout</span>
-                    </>
-                  )}
-                </button>
-              </li>
-            </ul>
-          </details>}
-          {user && <Link to={"/"} className="p-2 hover:bg-gray-100 rounded-full">
-            <Bell className="h-5 w-5" />
-          </Link>}
+              </>
+            ) : (
+              <Link to={"/signup"} className="btn btn-primary">
+                Sign Up
+              </Link>
+            )}
+          </div>
+          <div className="flex-1" onClick={() => setIsMenuOpen(false)}></div>
         </div>
-        
-      </div>
+      )}
     </header>
   );
 }

@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ApiLink } from "../../constants/ApiLink";
 
 export const discountApiSlice = createApi({
   reducerPath: "discountApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://gymboyui.onrender.com/api/discounts",
+    baseUrl: `${ApiLink}/discounts`,
     credentials: "include",
   }),
   tagTypes: ["Discount"],
@@ -15,7 +16,7 @@ export const discountApiSlice = createApi({
         body: { code },
       }),
       invalidatesTags: ["Discount"],
-    })
-  })
-})  
-export const { useCheckCouponMutation } = discountApiSlice
+    }),
+  }),
+});
+export const { useCheckCouponMutation } = discountApiSlice;

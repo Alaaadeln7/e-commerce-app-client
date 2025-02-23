@@ -1,119 +1,107 @@
-
-
-.limtProduct{
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+.limtProduct {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
-.limtProduct h1{
-    font-size: 3rem;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 3rem;
+.limtProduct h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 @media screen and (max-width: 374px) {
-    .limtProduct h1{
-        font-size: 2.3rem;
-    }
+  .limtProduct h1 {
+    font-size: 2.3rem;
+  }
 }
 
-.limtProduct .btns{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
+.limtProduct .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
-.limtProduct .btns .active{
-    padding: 0.6rem 2rem;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 0.3rem;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+.limtProduct .btns .active:hover {
+  background-color: #008000f5;
 }
 
-.limtProduct .btns .active:hover{
-    background-color: #008000f5;
+.limtProduct .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.limtProduct .content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+.limtProduct .content .product-card {
+  max-width: 18rem;
+  position: relative;
 }
 
-.limtProduct .content .product-card{
-    max-width: 18rem;
-    position: relative;
+.limtProduct .content .product-card .image {
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.limtProduct .content .product-card .image{
-    width: 100%;
-    background-color: rgb(245, 245, 245);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
+.limtProduct .content .product-card .image img {
+  width: 60%;
+  margin: auto;
+  padding-top: 3rem;
 }
 
-.limtProduct .content .product-card .image img{
-    width: 60%;
-    margin: auto;
-    padding-top: 3rem;
+.limtProduct .content .product-card .badge {
+  background-color: rgb(255, 205, 113);
+  padding: 0.7rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
-.limtProduct .content .product-card .badge{
-    background-color: rgb(255, 205, 113);
-    padding: 0.7rem;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+.limtProduct .content .product-card h2 {
+  font-weight: 500;
 }
 
-.limtProduct .content .product-card h2{
-    font-weight: 500;
+.limtProduct .content .product-card p {
+  color: gray;
+  font-size: 0.9rem;
 }
 
-.limtProduct .content .product-card p{
-    color: gray;
-    font-size: 0.9rem;
+.limtProduct .content .product-card h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: inline;
 }
 
-.limtProduct .content .product-card h3{
-    font-size: 1.6rem;
-    font-weight: bold;
-    display: inline;
+.limtProduct .content .product-card .discount {
+  font-size: 0.9rem;
+  color: gray;
+  text-decoration: line-through;
 }
 
-.limtProduct .content .product-card .discount{
-    font-size: 0.9rem;
-    color: gray;
-    text-decoration: line-through;
+.limtProduct .content .product-card .foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.limtProduct .content .product-card .foot{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.limtProduct .content .product-card .foot .cart-btn {
+  padding: 0.4rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  color: var(--primary-color);
+  transition: 0.3s;
 }
 
-.limtProduct .content .product-card .foot .cart-btn{
-    padding: 0.4rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 50%;
-    color: var(--primary-color);
-    transition: 0.3s;
+.limtProduct .content .product-card .foot .cart-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
 }
 
-.limtProduct .content .product-card .foot .cart-btn:hover{
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.limtProduct .content .product-card .foot .cart-btn .icon{
-    font-size: 1.8rem;
+.limtProduct .content .product-card .foot .cart-btn .icon {
+  font-size: 1.8rem;
 }

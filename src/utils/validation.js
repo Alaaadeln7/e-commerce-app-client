@@ -24,3 +24,10 @@ export const validationSignupPage = yup.object({
     .matches(/\d/, "Password must contain a number"),
 });
 
+export const validationAddProduct = yup.object({
+  title: yup.string().required("Title is required"),
+  description: yup.string().required("Description is required"),
+  price: yup.number().required("Price is required"),
+  category: yup.string().required("Category is required"),
+  stock: yup.number().required("Stock is required"),
+});

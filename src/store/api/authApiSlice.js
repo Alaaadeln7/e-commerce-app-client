@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ApiLink } from "../../constants/ApiLink";
 
 export const authApiSlice = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://gymboyui.onrender.com/api/auth",
+    baseUrl: `${ApiLink}/auth`,
     credentials: "include",
   }),
   tagTypes: ["User"],
@@ -51,6 +52,14 @@ export const authApiSlice = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    completeInfo: builder.mutation({
+      query: (values) => ({
+        url: "/completeInfo",
+        method: "PUT",
+        body: values,
+      }),
+      invalidatesTags: ["User"],
+    })
   }),
 });
 
@@ -61,4 +70,5 @@ export const {
   useLogoutMutation,
   useUpdateProfileMutation,
   useUpdateInfoMutation,
+  useCompleteInfoMutation,
 } = authApiSlice;

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui";
+import tailwindScrollbarHide from "tailwind-scrollbar-hide";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -14,11 +15,11 @@ export default {
         "base-700": "#292929",
         "base-800": "#1c1c1c",
         "base-900": "#0f0f0f",
-        "primary": "#389c38",
-      }
+        primary: "#389c38",
+      },
     },
   },
-  plugins: [daisyui],
+  plugins: [daisyui, tailwindScrollbarHide],
   daisyui: {
     themes: [
       "light",

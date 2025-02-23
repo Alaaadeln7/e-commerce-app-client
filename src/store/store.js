@@ -5,6 +5,8 @@ import { productApiSlice } from "./api/productApiSlice";
 import { notificationApiSlice } from "./api/notificationApiSlice";
 import { cartApiSlice } from "./api/cartApiSlice";
 import { discountApiSlice } from "./api/discountApiSlice";
+import { reviewApiSlice } from "./api/reviewsApiSlice";
+import { orderApiSlice } from "./api/orderApiSlice";
 const store = configureStore({
   reducer: {
     [authApiSlice.reducerPath]: authApiSlice.reducer,
@@ -12,6 +14,8 @@ const store = configureStore({
     [notificationApiSlice.reducerPath]: notificationApiSlice.reducer,
     [cartApiSlice.reducerPath]: cartApiSlice.reducer,
     [discountApiSlice.reducerPath]: discountApiSlice.reducer,
+    [reviewApiSlice.reducerPath]: reviewApiSlice.reducer,
+    [orderApiSlice.reducerPath]: orderApiSlice.reducer,
     theme: themeSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -20,7 +24,9 @@ const store = configureStore({
       productApiSlice.middleware,
       notificationApiSlice.middleware,
       cartApiSlice.middleware,
-      discountApiSlice.middleware
+      discountApiSlice.middleware,
+      reviewApiSlice.middleware,
+      orderApiSlice.middleware
     ),
 });
 

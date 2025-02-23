@@ -8,17 +8,16 @@ import {
   MessageSquare,
   User,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import AuthImagePattern from "../../components/AuthImagePattern";
 import toast from "react-hot-toast";
-import { useSignupMutation } from "../../store/api/authApiSlice";
 import { validationSignupPage } from "../../utils/validation";
+import useAuth from "../../hooks/useAuth";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [signup, { isLoading, isSuccess }] = useSignupMutation();
-  const navigate = useNavigate();
+  const {handleSignup,isSigningUp} = useAuth();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -27,15 +26,7 @@ export default function SignupPage() {
     },
     validationSchema: validationSignupPage,
     onSubmit: async (values) => {
-      try {
-        await signup(values).unwrap();
-        if (isSuccess) {
-          toast.success("Signup is successful!");
-          navigate("/");
-        }
-      } catch (err) {
-        toast.error(err?.data?.message || "Signup failed. Try again!");
-      }
+      handleSignup(values);
     },
   });
 
@@ -156,9 +147,9 @@ export default function SignupPage() {
             <button
               type="submit"
               className="btn btn-primary w-full"
-              disabled={isLoading}
+              disabled={isSigningUp}
             >
-              {isLoading ? (
+              {isSigningUp ? (
                 <>
                   <Loader2 className="size-5 animate-spin" />
                   Loading...

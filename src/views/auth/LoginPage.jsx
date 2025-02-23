@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useState } from "react";
+import { Link  } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
-import { useLoginMutation } from "../../store/api/authApiSlice";
 
 import AuthImagePattern from "../../components/AuthImagePattern";
 import { validationLoginPage } from "../../utils/validation";
+import useAuth from "../../hooks/useAuth";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [login, { isLoading, isSuccess }] = useLoginMutation();
-  const navigate = useNavigate();
+  const {handleLogin,isLoggingIn} = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -20,15 +18,7 @@ export default function LoginPage() {
     },
     validationSchema: validationLoginPage,
     onSubmit: async (values) => {
-      try {
-        await login(values).unwrap();
-        if (isSuccess) {
-          toast.success("Login is successful");
-          navigate("/");
-        }
-      } catch (error) {
-        toast.error(error.data?.message || "Login failed");
-      }
+      handleLogin(values);
     },
   });
 
@@ -117,9 +107,9 @@ export default function LoginPage() {
             <button
               type="submit"
               className="btn btn-primary w-full"
-              disabled={isLoading}
+              disabled={isLoggingIn}
             >
-              {isLoading ? (
+              {isLoggingIn ? (
                 <>
                   <Loader2 className="size-5 animate-spin" />
                   Loading...

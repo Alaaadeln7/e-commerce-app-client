@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ApiLink } from "../../constants/ApiLink";
 
 export const cartApiSlice = createApi({
   reducerPath: "cartApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://gymboyui.onrender.com/api/cart",
+    baseUrl: `${ApiLink}/cart`,
+    credentials: "include",
   }),
   tagTypes: ["Cart"],
   endpoints: (builder) => ({
@@ -28,9 +30,17 @@ export const cartApiSlice = createApi({
       invalidatesTags: ["Cart"],
     }),
     deleteCartItem: builder.mutation({
-      query: (productId) => `/delete/${productId}`,
+      query: (productId) => ({
+        url: `/delete/${productId}`,
+        method: "DELETE",
+      }),
       invalidatesTags: ["Cart"],
     }),
   }),
-})
-export const {useGetCartItemQuery, useAddToCartMutation, useUpdateCartMutation, useDeleteCartItemMutation} = cartApiSlice
+});
+export const {
+  useGetCartItemQuery,
+  useAddToCartMutation,
+  useUpdateCartMutation,
+  useDeleteCartItemMutation,
+} = cartApiSlice;

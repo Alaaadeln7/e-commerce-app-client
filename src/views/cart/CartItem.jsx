@@ -1,8 +1,16 @@
 import { Trash2 } from "lucide-react";
-
-export default function CartItem({ key, thumbnail, title, price, quantity }) {
+import useCart from "../../hooks/useCart";
+import MainButtonLoader from "../../components/MainButtonLoader";
+export default function CartItem({
+  productId,
+  thumbnail,
+  title,
+  price,
+  quantity,
+}) {
+  const { handleDeleteItem, deleteCartItemLoading } = useCart();
   return (
-    <tr key={key}>
+    <tr>
       <td>
         <img
           src={thumbnail}
@@ -15,7 +23,13 @@ export default function CartItem({ key, thumbnail, title, price, quantity }) {
       <td>{quantity}</td>
       <td>${price * quantity}</td>
       <td>
-        <Trash2 className="cursor-pointer w-5 h-5 text-red-600" />
+        <button onClick={() => handleDeleteItem(productId)}>
+          {deleteCartItemLoading ? (
+            <MainButtonLoader />
+          ) : (
+            <Trash2 className="cursor-pointer w-5 h-5 text-red-600" />
+          )}
+        </button>
       </td>
     </tr>
   );
