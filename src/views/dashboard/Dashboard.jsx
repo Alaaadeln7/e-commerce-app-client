@@ -53,7 +53,7 @@ export default function Dashboard() {
           icon={<ShoppingCart className="w-10 h-10 text-orange-500" />}
         />
       </div>
-      <div className="col-span-1 md:col-span-2 lg:col-span-4 p-4 bg-white rounded-lg shadow-md">
+      <div className="col-span-1 md:col-span-2 lg:col-span-4 p-4 bg-base-300 rounded-lg shadow-md">
         <h2 className="text-xl font-bold mb-4">Sales Overview</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>

@@ -55,7 +55,7 @@ export default function Reviews({ productId }) {
     );
 
   return (
-    <div className="bg-base-200 p-6 md:p-10">
+    <div className="bg-base-100 p-6 md:p-10">
       <header className="flex flex-col md:flex-row justify-between px-5 md:px-10 items-center my-5">
         <h1 className="text-xl md:text-2xl">Reviews</h1>
         <button

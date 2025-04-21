@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 import { useCompleteInfoMutation } from "../../store/api/authApiSlice";
 import MainButtonLoader from "../../components/MainButtonLoader";
+import toast from "react-hot-toast";
 export default function InputInfo() {
   const navigate = useNavigate();
-  const [completeInfo, { isLoading ,isSuccess }] = useCompleteInfoMutation();
+  const [completeInfo, { isLoading, isSuccess }] = useCompleteInfoMutation();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -20,16 +21,14 @@ export default function InputInfo() {
       city: yup.string().required("Address is required").trim(),
       area: yup.string().required("Address is required").trim(),
       street: yup.string().required("Address is required").trim(),
-      phoneNumber: yup
-        .string()
-        .required("Phone Number is required")
-        .trim(),
+      phoneNumber: yup.string().required("Phone Number is required").trim(),
     }),
     onSubmit: async (values) => {
       console.log(values);
-      await completeInfo(values).unwrap();
-      if(isSuccess){
-        navigate("/makeOrder")
+      const res = await completeInfo(values).unwrap();
+      if (res?.data) {
+        toast.success("complete info successfully");
+        navigate("/make-order");
       }
     },
   });
@@ -37,11 +36,13 @@ export default function InputInfo() {
   return (
     <div className=" mt-40 text-center container px-4">
       <header className="text-center mb-6 flex justify-center items-center gap-5">
-        <button className="btn btn-primary " onClick={() => navigate(-1)}><MoveLeft size={20}/></button>
+        <button className="btn" onClick={() => navigate(-1)}>
+          <MoveLeft size={20} />
+        </button>
         <h1 className="text-3xl font-semibold">input your info</h1>
       </header>
-      <section className="flex justify-center mx-5 max-w-[500px] flex-col ">
-        <article className="w-full p-6 border  rounded-lg">
+      <section className="flex justify-center items-center mx-5 max-w-[500px] flex-col mx-auto">
+        <article className="w-full p-6 border border-base-300 rounded-lg">
           <form
             method="POST"
             className="flex flex-col gap-6"
@@ -143,8 +144,12 @@ export default function InputInfo() {
               )}
             </div>
 
-            <button disabled={isLoading} type="submit" className="btn btn-primary w-full">
-              {isLoading ? <MainButtonLoader/> : "Submit"}
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="btn btn-primary w-full"
+            >
+              {isLoading ? <MainButtonLoader /> : "Submit"}
             </button>
           </form>
         </article>

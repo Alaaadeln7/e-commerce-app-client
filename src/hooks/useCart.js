@@ -6,6 +6,7 @@ import {
 } from "../store/api/cartApiSlice";
 import toast from "react-hot-toast";
 import { useCheckQuery } from "../store/api/authApiSlice";
+import { useCreateCheckoutSessionMutation } from "../store/api/orderApiSlice";
 
 export default function useCart() {
   const navigate = useNavigate();
@@ -16,6 +17,16 @@ export default function useCart() {
   const [addToCart, { isLoading: addToCartLoading }] = useAddToCartMutation();
   const [deleteCartItem, { isLoading: deleteCartItemLoading }] =
     useDeleteCartItemMutation();
+  const [createCheckoutSession, { isLoading: createCheckoutLoading }] =
+    useCreateCheckoutSessionMutation();
+
+  const handleCreateCheckoutSession = async (orderId) => {
+    let res = await createCheckoutSession({ orderId });
+    if (res?.data) {
+      console.log(res?.data?.url);
+      window.location.href = res?.data?.url;
+    }
+  };
   // handle add to cart
   const handleAddToCart = async (productId) => {
     if (user) {
@@ -38,6 +49,8 @@ export default function useCart() {
     handleDeleteItem,
     deleteCartItemLoading,
     totalPrices,
-    getCartItemLoading
+    getCartItemLoading,
+    handleCreateCheckoutSession,
+    createCheckoutLoading,
   };
 }

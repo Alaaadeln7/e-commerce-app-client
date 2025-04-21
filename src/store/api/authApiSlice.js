@@ -54,12 +54,12 @@ export const authApiSlice = createApi({
     }),
     completeInfo: builder.mutation({
       query: (values) => ({
-        url: "/completeInfo",
+        url: "/complete-info",
         method: "PUT",
         body: values,
       }),
       invalidatesTags: ["User"],
-    })
+    }),
   }),
 });
 

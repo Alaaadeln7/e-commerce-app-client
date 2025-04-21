@@ -4,7 +4,7 @@ import LazyImage from "../../components/LazyImage";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { GrDashboard } from "react-icons/gr";
+// import { GrDashboard } from "react-icons/gr";
 
 export default function ProfilePage() {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -34,7 +34,7 @@ export default function ProfilePage() {
   return (
     <div className="h-screen pt-20">
       <div className="max-w-2xl mx-auto p-4 py-8">
-        <div className="bg-base-100 dark:bg-base-300 rounded-xl p-6 space-y-8">
+        <div className="bg-base-300  rounded-xl p-6 space-y-8">
           <div className="text-center">
             <h1 className="text-2xl font-semibold ">Profile</h1>
             <p className="mt-2">Your profile information</p>
@@ -44,7 +44,7 @@ export default function ProfilePage() {
               <LazyImage
                 src={selectedImg || user?.avatar}
                 alt="Profile"
-                className="size-32 rounded-full object-cover border-4 "
+                className="size-32 rounded-full object-cover border-4 border-base-800"
               />
               <label
                 htmlFor="avatar-upload"
@@ -115,13 +115,7 @@ export default function ProfilePage() {
                 <Settings className="size-5 p-0 m-0" />
                 settings
               </Link>
-              {user?.role === "admin" ||
-                ("seller" && (
-                  <Link to={"/dashboard"} className="btn btn-primary m-0">
-                    <GrDashboard className="size-5 p-0 m-0" />
-                    dashboard
-                  </Link>
-                ))}
+
               <button
                 onClick={handleLogout}
                 disabled={isLoggingOut}

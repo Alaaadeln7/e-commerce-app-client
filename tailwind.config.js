@@ -6,15 +6,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        "base-100": "#f9f9f9",
-        "base-200": "#e0e0e0",
-        "base-300": "#b3b3b3",
-        "base-400": "#8a8a8a",
-        "base-500": "#5f5f5f",
-        "base-600": "#434343",
-        "base-700": "#292929",
-        "base-800": "#1c1c1c",
-        "base-900": "#0f0f0f",
         primary: "#389c38",
       },
     },

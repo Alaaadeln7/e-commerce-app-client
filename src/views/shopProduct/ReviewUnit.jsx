@@ -1,7 +1,7 @@
 export default function ReviewUnit({ user, rating, reviewText }) {
   return (
     <>
-      <div className="flex flex-col p-4 bg-white rounded-lg shadow-md">
+      <div className="flex flex-col p-4 bg-base-300 rounded-lg shadow-md">
         <div className="flex gap-3 items-center">
           <img
             src={user?.avatar}
@@ -23,7 +23,7 @@ export default function ReviewUnit({ user, rating, reviewText }) {
             </div>
           </div>
         </div>
-        <p className="mt-3 text-gray-700">{reviewText}</p>
+        <p className="mt-3 text-base-700">{reviewText}</p>
       </div>
     </>
   );

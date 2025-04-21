@@ -7,9 +7,8 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import ErrorBoundary from "./components/ErrorBoundary";
 import useAuth from "./hooks/useAuth";
 import SingleProduct from "./views/shopProduct/SingleProduct";
-import useSocket from "./hooks/useSocket";
-import AddProduct from "./views/shopProduct/AddProduct";
-import Dashboard from "./views/dashboard/Dashboard";
+// import AddProduct from "./views/shopProduct/AddProduct";
+// import Dashboard from "./views/dashboard/Dashboard";
 import Checkout from "./views/checkout/Checkout";
 import Blog from "./views/blog/Blog";
 
@@ -26,29 +25,19 @@ const UpdateInfo = lazy(() => import("./views/auth/UpdateInfo"));
 const MakeOrder = lazy(() => import("./views/order/MakeOrder"));
 const InputInfo = lazy(() => import("./views/order/InputInfo"));
 const OrderSuccess = lazy(() => import("./views/order/OrderSuccess"));
+const PaymentSuccess = lazy(() => import("./views/payment/PaymentSuccess"));
+const PaymentCancelled = lazy(() => import("./views/payment/PaymentCancelled"));
+
 export default function App() {
   const { theme } = useSelector((state) => state.theme);
   const { user } = useAuth();
-  const { connectionSocket, disconnectSocket } = useSocket();
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
-  useEffect(() => {
-    if (user) {
-      connectionSocket();
-    }
-    return () => {
-      if (!user) {
-        disconnectSocket();
-      }
-    };
-  }, [connectionSocket, disconnectSocket, user]);
+
   return (
     <ErrorBoundary>
-      <main
-        data-theme={theme}
-        className="min-h-screen w-full max-w-[100vw] overflow-x-hidden"
-      >
+      <main className="min-h-screen w-full max-w-[100vw] overflow-x-hidden">
         <Navbar />
         <ErrorBoundary>
           <Suspense fallback={<LoadingSpinner />}>
@@ -65,17 +54,19 @@ export default function App() {
               {user && <Route path="/profile" element={<ProfilePage />} />}
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/update-info" element={<UpdateInfo />} />
-              <Route path="/add-product" element={<AddProduct />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route path="/add-product" element={<AddProduct />} /> */}
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/blogs" element={<Blog />} />
-              <Route path="/InputInfo" element={<InputInfo />} />
-              <Route path="/makeOrder" element={<MakeOrder />} />
-              <Route path="/orderSuccess" element={<OrderSuccess />} />
+              <Route path="/input-info" element={<InputInfo />} />
+              <Route path="/make-order" element={<MakeOrder />} />
+              <Route path="/order-success" element={<OrderSuccess />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/payment-cancelled" element={<PaymentCancelled />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>
-        <Toaster position="top-right" />
+        <Toaster />
       </main>
     </ErrorBoundary>
   );

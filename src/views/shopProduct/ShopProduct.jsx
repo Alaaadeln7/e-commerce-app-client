@@ -8,9 +8,9 @@ const ShopProduct = () => {
     <div className="shop-product">
       <div className="container">
         <div className="content">
-          <div className="head flex justify-around items-center space-x-2 flex-wrap">
+          <div className="head flex justify-around items-center space-x-2 flex-wrap gap-10">
             {/* left side */}
-            <div className="left flex justify-center items-center space-x-5">
+            <div className="left flex justify-center items-center space-x-5 flex-wrap gap-4">
               <button
                 onClick={() => setCategory("")}
                 className="btn w-5/12 text-primary hover:bg-primary hover:text-white"
@@ -33,11 +33,11 @@ const ShopProduct = () => {
               </button>
             </div>
             {/* right side  */}
-            <div className="flex space-x-5 flex-wrap">
-              <div className="flex justify-center items-center space-x-3  border-b-2 border-gray-400">
+            <div className="flex space-x-5 flex-wrap gap-5">
+              <div className="flex justify-center items-center space-x-3  border-b-2 border-gray-400 py-4 sm:w-full px-5">
                 <Search />
                 <input
-                  className="outline-none"
+                  className="outline-none bg-transparent"
                   type="text"
                   name=""
                   placeholder="Search Product"

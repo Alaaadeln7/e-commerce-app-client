@@ -6,28 +6,40 @@ import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
 import MainButtonLoader from "../../components/MainButtonLoader";
 import { useCreateOrderMutation } from "../../store/api/orderApiSlice";
+import toast from "react-hot-toast";
+import OrderItemSkeleton from "../../components/skeleton/OrderItemSkeleton";
 
 export default function MakeOrder() {
   const navigate = useNavigate();
-  const { cartItems, totalPrices } = useCart();
+  const {
+    cartItems,
+    totalPrices,
+    getCartItemLoading,
+    handleCreateCheckoutSession,
+  } = useCart();
   const { user } = useAuth();
   const [createOrder, { isLoading: createOrderLoading }] =
     useCreateOrderMutation();
   const handleCreateOrder = async () => {
-    await createOrder({
+    const res = await createOrder({
       totalPrice: totalPrices,
-      paymentStatus: "cash",
+      paymentStatus: "pending",
       city: user?.city,
       area: user?.area,
       street: user?.street,
       phoneNumber: user?.phoneNumber,
     }).unwrap();
-    navigate("/orderSuccess");
+    if (res?.data) {
+      toast.success("make order successfully");
+      await handleCreateCheckoutSession({
+        orderId: res?.data?._id,
+      });
+    }
   };
 
   const printProducts = cartItems.map((item) => (
     <>
-      <div className="flex justify-around px-2 items-center">
+      <div className="flex justify-around  px-2 items-center flex-wrap">
         <LazyImage src={item.product.thumbnail} className={"size-20"} />
         <div className="flex flex-col gap-2">
           <h2 className="font-semibold">{item.product.title}</h2>
@@ -45,13 +57,13 @@ export default function MakeOrder() {
     <div className="flex justify-center items-center ">
       <div className="w-[700px]">
         <header className="text-center mt-40 mb-10 space-y-5">
-          <button onClick={() => navigate(-1)}>
+          <button onClick={() => navigate(-1)} className="btn">
             <MoveLeft className="size-5 text-primary" />
           </button>
-          <h1 className="font-semibold text-3xl text-black">
+          <h1 className="font-semibold text-3xl text-base-900">
             thank you for purchase!
           </h1>
-          <p className="text-base-300">
+          <p className="text-base-900">
             you will receive an confirmation letter throuth your email
           </p>
         </header>
@@ -104,18 +116,18 @@ export default function MakeOrder() {
               <h1 className="text-2xl font-bold ">order line</h1>
             </header>
             <div className="shadow shadow-black rounded-md  p-10 my-5">
-              {printProducts}
+              {getCartItemLoading ? <OrderItemSkeleton /> : printProducts}
             </div>
             <div className="flex justify-center items-center gap-5">
               <button className="btn w-5/12 text-white bg-primary  rounded-sm hover:bg-primary/80">
                 update something
               </button>
               <button
-              disabled={createOrderLoading}
+                disabled={createOrderLoading}
                 onClick={handleCreateOrder}
                 className="btn w-5/12 text-white bg-primary  rounded-sm hover:bg-primary/80"
               >
-                {createOrderLoading ? <MainButtonLoader/> : "make order"}
+                {createOrderLoading ? <MainButtonLoader /> : "make order"}
               </button>
             </div>
           </article>

@@ -3,7 +3,7 @@ import useCart from "../../hooks/useCart";
 import CartItem from "./CartItem";
 import PaymentSection from "./PaymentSection";
 export default function Cart() {
-  const { cartItems,getCartItemLoading } = useCart();
+  const { cartItems, getCartItemLoading } = useCart();
 
   const printCartItems = cartItems?.map((item) => (
     <CartItem
@@ -18,11 +18,9 @@ export default function Cart() {
   if (!cartItems.length) {
     return (
       <div className="mt-20 text-center container px-4">
-        {cartItems.length !== 0 && (
-          <h1 className="text-3xl font-semibold">
-            My Shopping Bag ({!cartItems.length} Items)
-          </h1>
-        )}
+        <h1 className="text-3xl font-semibold">
+          My Shopping Bag ({cartItems.length} Items)
+        </h1>
         <div className="flex items-center justify-center mt-4">
           <div className="flex items-center flex-col">
             <ShoppingCart className="w-8 h-8 text-primary animate-pulse" />
@@ -38,7 +36,7 @@ export default function Cart() {
   if (getCartItemLoading) {
     return (
       <div className="mt-20 text-center container px-4">
-       <Loader className="size-10 animate-spin"/>
+        <Loader className="size-10 animate-spin" />
       </div>
     );
   }
@@ -47,12 +45,12 @@ export default function Cart() {
       <h1 className="text-3xl font-semibold">
         My Shopping Bag ({cartItems.length} Items)
       </h1>
-      <div className="flex flex-col lg:flex-row justify-between w-full mt-10 space-y-10 lg:space-y-0 lg:space-x-10">
+      <div className="flex flex-col lg:flex-row justify-between w-full mt-10">
         <div className="lg:w-7/12 w-full">
           <h1 className="text-2xl flex items-center space-x-2 my-2">
             <ShoppingCart /> <span>Order Summary</span>
           </h1>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto lg:w-12/12">
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr>
@@ -67,8 +65,8 @@ export default function Cart() {
               <tbody>{printCartItems}</tbody>
             </table>
           </div>
-          <PaymentSection />
         </div>
+        <PaymentSection />
       </div>
     </div>
   );

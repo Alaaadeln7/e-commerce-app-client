@@ -51,7 +51,7 @@ export default function useAuth() {
   };
 
   return {
-    user,
+    user: user?.data,
     userLoading,
     handleSignup,
     logout,

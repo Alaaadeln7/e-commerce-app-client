@@ -13,7 +13,6 @@ export default function useCoupon() {
       coupon: yup.string().required("Coupon is required").trim(),
     }),
     onSubmit: async (values) => {
-      console.log(values.coupon);
       await checkCoupon(values.coupon).unwrap();
       if (discount?.validtion === true) {
         toast.success("Coupon applied");
